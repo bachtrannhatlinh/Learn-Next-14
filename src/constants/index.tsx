@@ -15,17 +15,17 @@ export const menuItem: TMenuItem[] = [
     icon: <IconPlay className="size-5" />,
   },
   {
-    url: "/book",
+    url: "/manage/book",
     title: "Khu vực học tập",
     icon: <IconBook className="size-5" />,
   },
   {
-    url: "/manage/explore",
+    url: "/manage/course",
     title: "Quản lý khoá học",
     icon: <IconExplore className="size-5" />,
   },
   {
-    url: "/manage/user",
+    url: "/manage/member",
     title: "Quản lý thành viên",
     icon: <IconUser className="size-5" />,
   },

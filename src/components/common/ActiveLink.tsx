@@ -21,7 +21,7 @@ const ActiveLink = ({ url, children }: ActiveLinkProps) => {
     ${
       isActive
         ? "text-white bg-purple-400"
-        : "hover:text-purple-400 hover:bg-purple-400/50 hover:bg-opacity/10"
+        : "hover:text-purple-400 hover:bg-purple-400/50 hover:bg-opacity/10 dark:text-white"
     }
       `}
       >

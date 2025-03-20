@@ -1,8 +1,8 @@
 "use client";
 
 import "@/app/styles/global.css";
+import { ThemeProvider } from "@/components/common/ThemeProvider";
 import { ClerkProvider } from "@clerk/nextjs";
-import { useState } from "react";
 
 export default function RootLayout({
   children,
@@ -10,7 +10,13 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body>{children}</body>
+        <body>
+          <ClerkProvider>
+            <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+              {children}
+            </ThemeProvider>
+          </ClerkProvider>
+        </body>
       </html>
     </ClerkProvider>
   );

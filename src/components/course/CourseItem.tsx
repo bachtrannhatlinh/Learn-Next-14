@@ -22,7 +22,7 @@ const CourseItem = () => {
   ];
 
   return (
-    <div className="bg-white border border-gray-200 p-4 rounded-2xl">
+    <div className="bg-white border border-gray-200 p-4 rounded-2xl dark:bg-gray-800 dark:border-gray-700">
       <Link href="#" className="block h-[180px] relative">
         <div className="relative w-full h-full">
           <Image
@@ -47,19 +47,19 @@ const CourseItem = () => {
         </h3>
         <div className="flex items-center gap-3 mb-5 text-xs text-gray-500">
           {courseInfo.map((item, index) => (
-            <div key={index} className="flex items-center gap-1">
+            <div key={index} className="flex items-center gap-1 dark:text-gray-300">
               {item.icon("size-4")}
               <span>{item.title}</span>
             </div>
           ))}
-          <span className="font-semibold text-primary ml-auto text-base">
+          <span className="font-semibold text-red-400 ml-auto text-base">
             800.000
           </span>
         </div>
         <Link
           href="#"
           className="flex items-center justify-center w-full mt-10 rounded-lg
-         text-white font-semibold bg-primary h-12"
+         text-white font-semibold bg-red-400 h-12"
         >
           Xem chi tiết
         </Link>

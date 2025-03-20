@@ -2,6 +2,7 @@ import React from "react";
 import { menuItem } from "@/constants";
 import ActiveLink from "@/components/common/ActiveLink";
 import { TMenuItem } from "@/types";
+import { ModeToggle } from "../common/ModeToggle";
 
 export default function Sidebar() {
   function MenuItem({ url = "/", title = "", icon }: TMenuItem) {
@@ -16,11 +17,11 @@ export default function Sidebar() {
   }
 
   return (
-    <div className="p-5 border-r border-gray-200 bg-white">
+    <div className="p-5 border-r border-gray-200 bg-white dark:bg-black">
       <a href="/" className="font-bold text-3xl inline-block mb-5">
         Ucademy
       </a>
-      <ul>
+      <ul className="flex flex-col gap-2">  
         {menuItem.map((item, index) => (
           <MenuItem
             key={index}
@@ -30,6 +31,9 @@ export default function Sidebar() {
           />
         ))}
       </ul>
+      <div className="mt-auto flex items-center justify-end gap-5">
+        <ModeToggle />
+      </div>
     </div>
   );
 }
