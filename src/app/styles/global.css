@@ -1,6 +1,7 @@
-@import "tailwindcss";
-
-@import "tailwindcss/preflight";
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css" layer(utilities);
 
 @layer base {
   body {
@@ -13,7 +14,7 @@
   .svg-animate {
     stroke-dashoffset: 100;
     stroke-dasharray: 100;
-    animation: dash 3s linear forwards;
+    animation: dash 1s linear forwards;
   }
 
   @keyframes dash {
