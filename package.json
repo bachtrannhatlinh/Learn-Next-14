@@ -3,9 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "npx tailwindcss -i styles/main.css -o public/tailwind.css",
-    "watch": "tailwind build -i tailwind/main.css -o public/tailwind.css -w",
+    "dev": "next dev",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
