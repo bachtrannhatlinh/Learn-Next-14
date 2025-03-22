@@ -15,7 +15,7 @@ export const menuItem: TMenuItem[] = [
     icon: <IconPlay className="size-5" />,
   },
   {
-    url: "/manage/book",
+    url: "/study",
     title: "Khu vực học tập",
     icon: <IconBook className="size-5" />,
   },
