@@ -1,30 +1,26 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import "@/app/styles/global.css";
 import { ThemeProvider } from "@/components/common/ThemeProvider";
 import { ClerkProvider } from "@clerk/nextjs";
+import { ToastContainer } from 'react-toastify';
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   return (
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
         <body>
-          {mounted ? (
-            <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-              {children}
-            </ThemeProvider>
-          ) : (
-            <>{children}</>
-          )}
+          <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+            {children}
+            <ToastContainer 
+              autoClose={2000}
+              hideProgressBar={true}
+              className="text-sm font-medium"
+              position="top-right"
+            />
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>
