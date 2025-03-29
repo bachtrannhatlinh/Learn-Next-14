@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
-import { zodResolver } from '@hookform/resolvers/zod';
-import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { toast } from 'react-toastify';
-import { useImmer } from 'use-immer';
-import { z } from 'zod';
+import { zodResolver } from "@hookform/resolvers/zod";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import { useImmer } from "use-immer";
+import { z } from "zod";
 
 import { updateCourse } from "@/lib/actions/course.actions";
-import { IconAdd } from '@/components/icons';
+import { IconAdd } from "@/components/icons";
 import {
   Button,
   Form,
@@ -32,12 +32,12 @@ import {
   courseLevel,
   CourseStatus,
   courseStatus,
-} from '@/constants';
-import { UploadButton } from '@/lib/uploadthing';
-import { ICourse } from '@/app/database/course.model';
+} from "@/constants";
+import { UploadButton } from "@/lib/uploadthing";
+import { ICourse } from "@/app/database/course.model";
 
 const formSchema = z.object({
-  title: z.string().min(10, 'Tên khóa học phải có ít nhất 10 ký tự'),
+  title: z.string().min(10, "Tên khóa học phải có ít nhất 10 ký tự"),
   slug: z.string().optional(),
   price: z.number().int().positive().optional(),
   sale_price: z.number().int().positive().optional(),
@@ -133,14 +133,11 @@ const UpdateCourseContainer = ({ course }: UpdateCourseContainerProps) => {
       setIsSubmitting(false);
     }
   }
-  const imageWatch = form.watch('image');
+  const imageWatch = form.watch("image");
 
   return (
     <Form {...form}>
-      <form
-        autoComplete="off"
-        onSubmit={form.handleSubmit(onSubmit)}
-      >
+      <form autoComplete="off" onSubmit={form.handleSubmit(onSubmit)}>
         <div className="mb-8 mt-10 grid grid-cols-2 gap-8">
           <FormField
             control={form.control}
@@ -149,10 +146,7 @@ const UpdateCourseContainer = ({ course }: UpdateCourseContainerProps) => {
               <FormItem>
                 <FormLabel>Tên khóa học *</FormLabel>
                 <FormControl>
-                  <Input
-                    placeholder="Tên khóa học"
-                    {...field}
-                  />
+                  <Input placeholder="Tên khóa học" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -165,10 +159,7 @@ const UpdateCourseContainer = ({ course }: UpdateCourseContainerProps) => {
               <FormItem>
                 <FormLabel>Đường dẫn khóa học</FormLabel>
                 <FormControl>
-                  <Input
-                    placeholder="khoa-hoc-lap-trinh"
-                    {...field}
-                  />
+                  <Input placeholder="khoa-hoc-lap-trinh" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -238,29 +229,27 @@ const UpdateCourseContainer = ({ course }: UpdateCourseContainerProps) => {
               <FormItem>
                 <FormLabel>Ảnh đại diện</FormLabel>
                 <FormControl>
-                  <>
-                    <div className="relative flex h-[250px] items-center justify-center rounded-md border border-gray-200 bg-white">
-                      {imageWatch ? (
-                        <Image
-                          fill
-                          alt=""
-                          className="size-full rounded-md object-cover"
-                          src={imageWatch}
-                        />
-                      ) : (
-                        <UploadButton
-                          endpoint="imageUploader"
-                          onClientUploadComplete={(response) => {
-                            // Do something with the response
-                            form.setValue('image', response[0].url);
-                          }}
-                          onUploadError={(error: Error) => {
-                            console.error(`ERROR! ${error.message}`);
-                          }}
-                        />
-                      )}
-                    </div>
-                  </>
+                  <div className="relative flex h-[250px] items-center justify-center rounded-md border border-gray-200 bg-white">
+                    {imageWatch ? (
+                      <Image
+                        fill
+                        alt=""
+                        className="size-full rounded-md object-cover"
+                        src={imageWatch}
+                      />
+                    ) : (
+                      <UploadButton
+                        endpoint="imageUploader"
+                        onClientUploadComplete={(response) => {
+                          // Do something with the response
+                          form.setValue("image", response[0].url);
+                        }}
+                        onUploadError={(error: Error) => {
+                          console.error(`ERROR! ${error.message}`);
+                        }}
+                      />
+                    )}
+                  </div>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -273,10 +262,7 @@ const UpdateCourseContainer = ({ course }: UpdateCourseContainerProps) => {
               <FormItem>
                 <FormLabel>Youtube URL</FormLabel>
                 <FormControl>
-                  <Input
-                    placeholder="https://youtube.com/axfgdr5"
-                    {...field}
-                  />
+                  <Input placeholder="https://youtube.com/axfgdr5" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -318,10 +304,7 @@ const UpdateCourseContainer = ({ course }: UpdateCourseContainerProps) => {
                     </SelectTrigger>
                     <SelectContent>
                       {courseStatus.map((status) => (
-                        <SelectItem
-                          key={status.value}
-                          value={status.value}
-                        >
+                        <SelectItem key={status.value} value={status.value}>
                           {status.title}
                         </SelectItem>
                       ))}
@@ -348,10 +331,7 @@ const UpdateCourseContainer = ({ course }: UpdateCourseContainerProps) => {
                     </SelectTrigger>
                     <SelectContent>
                       {courseLevel.map((level) => (
-                        <SelectItem
-                          key={level.value}
-                          value={level.value}
-                        >
+                        <SelectItem key={level.value} value={level.value}>
                           {level.title}
                         </SelectItem>
                       ))}
@@ -374,7 +354,7 @@ const UpdateCourseContainer = ({ course }: UpdateCourseContainerProps) => {
                     type="button"
                     onClick={() => {
                       setCourseInfo((draft) => {
-                        draft.requirements.push('');
+                        draft.requirements.push("");
                       });
                     }}
                   >
@@ -382,20 +362,18 @@ const UpdateCourseContainer = ({ course }: UpdateCourseContainerProps) => {
                   </button>
                 </FormLabel>
                 <FormControl>
-                  <>
-                    {courseInfo.requirements.map((r, index) => (
-                      <Input
-                        key={index}
-                        placeholder={`Yêu cầu số ${index + 1}`}
-                        value={r}
-                        onChange={(event) => {
-                          setCourseInfo((draft) => {
-                            draft.requirements[index] = event.target.value;
-                          });
-                        }}
-                      />
-                    ))}
-                  </>
+                  {courseInfo.requirements.map((r, index) => (
+                    <Input
+                      key={index}
+                      placeholder={`Yêu cầu số ${index + 1}`}
+                      value={r}
+                      onChange={(event) => {
+                        setCourseInfo((draft) => {
+                          draft.requirements[index] = event.target.value;
+                        });
+                      }}
+                    />
+                  ))}
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -413,7 +391,7 @@ const UpdateCourseContainer = ({ course }: UpdateCourseContainerProps) => {
                     type="button"
                     onClick={() => {
                       setCourseInfo((draft) => {
-                        draft.benefits.push('');
+                        draft.benefits.push("");
                       });
                     }}
                   >
@@ -421,20 +399,18 @@ const UpdateCourseContainer = ({ course }: UpdateCourseContainerProps) => {
                   </button>
                 </FormLabel>
                 <FormControl>
-                  <>
-                    {courseInfo.benefits.map((r, index) => (
-                      <Input
-                        key={index}
-                        placeholder={`Lợi ích số ${index + 1}`}
-                        value={r}
-                        onChange={(event) => {
-                          setCourseInfo((draft) => {
-                            draft.benefits[index] = event.target.value;
-                          });
-                        }}
-                      />
-                    ))}
-                  </>
+                  {courseInfo.benefits.map((r, index) => (
+                    <Input
+                      key={index}
+                      placeholder={`Lợi ích số ${index + 1}`}
+                      value={r}
+                      onChange={(event) => {
+                        setCourseInfo((draft) => {
+                          draft.benefits[index] = event.target.value;
+                        });
+                      }}
+                    />
+                  ))}
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -453,8 +429,8 @@ const UpdateCourseContainer = ({ course }: UpdateCourseContainerProps) => {
                     onClick={() => {
                       setCourseInfo((draft) => {
                         draft.qa.push({
-                          question: '',
-                          answer: '',
+                          question: "",
+                          answer: "",
                         });
                       });
                     }}
@@ -463,35 +439,30 @@ const UpdateCourseContainer = ({ course }: UpdateCourseContainerProps) => {
                   </button>
                 </FormLabel>
                 <FormControl>
-                  <>
-                    {courseInfo.qa.map((item, index) => (
-                      <div
+                  {courseInfo.qa.map((item, index) => (
+                    <div key={index} className="grid grid-cols-2 gap-5">
+                      <Input
                         key={index}
-                        className="grid grid-cols-2 gap-5"
-                      >
-                        <Input
-                          key={index}
-                          placeholder={`Câu hỏi số ${index + 1}`}
-                          value={item.question}
-                          onChange={(event) => {
-                            setCourseInfo((draft) => {
-                              draft.qa[index].question = event.target.value;
-                            });
-                          }}
-                        />
-                        <Input
-                          key={index}
-                          placeholder={`Câu trả lời số ${index + 1}`}
-                          value={item.answer}
-                          onChange={(event) => {
-                            setCourseInfo((draft) => {
-                              draft.qa[index].answer = event.target.value;
-                            });
-                          }}
-                        />
-                      </div>
-                    ))}
-                  </>
+                        placeholder={`Câu hỏi số ${index + 1}`}
+                        value={item.question}
+                        onChange={(event) => {
+                          setCourseInfo((draft) => {
+                            draft.qa[index].question = event.target.value;
+                          });
+                        }}
+                      />
+                      <Input
+                        key={index}
+                        placeholder={`Câu trả lời số ${index + 1}`}
+                        value={item.answer}
+                        onChange={(event) => {
+                          setCourseInfo((draft) => {
+                            draft.qa[index].answer = event.target.value;
+                          });
+                        }}
+                      />
+                    </div>
+                  ))}
                 </FormControl>
                 <FormMessage />
               </FormItem>

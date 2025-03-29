@@ -10,7 +10,7 @@ export async function getAllCourses(): Promise<ICourse[] | undefined> {
   try {
     connectToDatabase();
     const courses = await Course.find();
-    return courses;
+    return JSON.parse(JSON.stringify(courses));
   } catch (error) {
     console.log(error);
   }
@@ -23,7 +23,7 @@ export async function fetchCourseBySlug({
   try {
     connectToDatabase();
     const findCourse = await Course.findOne({ slug });
-    return findCourse;
+    return JSON.parse(JSON.stringify(findCourse));
   } catch (error) {
     console.log(error);
   }
