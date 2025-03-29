@@ -1,4 +1,4 @@
-import { EUserRole, EUserStatus } from "@/types/enums";
+import { UserRole, UserStatus } from "@/constants";
 import { Document, model, models, Schema } from "mongoose";
 
 export interface IUser extends Document {
@@ -26,13 +26,13 @@ const UserSchema = new Schema<IUser>({
   courses: [{ type: Schema.Types.ObjectId, ref: "Course" }],
   status: {
     type: String,
-    enum: Object.values(EUserStatus),
-    default: EUserStatus.INACTIVE,
+    enum: Object.values(UserStatus),
+    default: UserStatus.UNACTIVE,
   },
   role: {
     type: String,
-    enum: Object.values(EUserRole),
-    default: EUserRole.USER,
+    enum: Object.values(UserRole),
+    default: UserRole.USER,
   },
   create_at: { type: Date, default: Date.now },
 });

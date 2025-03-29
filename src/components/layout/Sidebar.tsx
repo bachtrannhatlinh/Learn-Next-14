@@ -1,13 +1,13 @@
 "use client";
 
 import React from "react";
-import { menuItem } from "@/constants";
+import { menuItems } from "@/constants";
 import ActiveLink from "@/components/common/ActiveLink";
 import { TMenuItem } from "@/types";
 import { ModeToggle } from "../common/ModeToggle";
 import Link from "next/link";
 import { UserButton } from "@clerk/nextjs";
-import { IconUser } from "../icons";
+import {IconUsers} from "@/components/icons";
 import { useAuth } from "@clerk/clerk-react";
 
 export default function Sidebar() {
@@ -30,7 +30,7 @@ export default function Sidebar() {
         Ucademy
       </a>
       <ul className="flex flex-col gap-2">
-        {menuItem.map((item, index) => (
+        {menuItems.map((item, index) => (
           <MenuItem
             key={index}
             url={item.url}
@@ -47,7 +47,7 @@ export default function Sidebar() {
               href="/sign-up"
               className="size-10 rounded-lg bg-slate-500 text-white flex items-center justify-center p-1"
             >
-              <IconUser />
+              <IconUsers />
             </Link>
           </>
         ) : (

@@ -2,7 +2,7 @@ import { IconPlay } from "@/components/icons";
 import Image from "next/image";
 import React from "react";
 
-import { getCourseBySlug } from "@/lib/actions/course.actions";
+import { fetchCourseBySlug } from "@/lib/actions/course.actions";
 import { Button } from "@/components/ui/button";
 
 function BoxInfo({
@@ -42,7 +42,7 @@ const page = async ({
     slug: string;
   };
 }) => {
-  const data = await getCourseBySlug({
+  const data = await fetchCourseBySlug({
     slug: params.slug,
   });
   if (!data) return null;

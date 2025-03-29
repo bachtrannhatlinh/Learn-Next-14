@@ -15,7 +15,7 @@ export async function getAllCourses(): Promise<ICourse[] | undefined> {
     console.log(error);
   }
 }
-export async function getCourseBySlug({
+export async function fetchCourseBySlug({
   slug,
 }: {
   slug: string;

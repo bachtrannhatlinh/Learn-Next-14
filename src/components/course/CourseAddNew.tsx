@@ -56,7 +56,7 @@ function CourseAddNew({ user }: { user: IUser }) {
       }
 
       if(res.data) {
-        router.push(`/manage/course/${res.data.slug}`);
+        router.push(`/manage/course/update?slug=${res.data.slug}`);
       }
     } catch (error) {
       toast.error("Tạo khoá học thất bại");
