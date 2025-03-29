@@ -20,15 +20,16 @@ import slugify from "slugify";
 import { createCourses } from "@/lib/actions/course.actions";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
-import { IUser } from "@/app/database/user.model";
+import { useUserContext } from "@/contexts";
 
 const formSchema = z.object({
   title: z.string().min(10, "Tên khoá học phải có ít nhất 10 ký tự"),
   slug: z.string().optional(),
 });
 
-function CourseAddNew({ user }: { user: IUser }) {
+function CourseAddNew() {
   const router = useRouter();
+  const { userInfo } = useUserContext();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // 1. Define your form.
@@ -42,12 +43,13 @@ function CourseAddNew({ user }: { user: IUser }) {
 
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    if (!userInfo) return;
     setIsSubmitting(true);
     try {
       const data = {
         title: values.title,
         slug: values.slug || slugify(values.title, { lower: true, locale: "vi" }),
-        author: user._id as string,
+        author: userInfo._id as string,
       };
 
       const res = await createCourses(data);

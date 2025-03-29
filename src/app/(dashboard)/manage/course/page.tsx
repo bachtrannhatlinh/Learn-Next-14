@@ -1,11 +1,19 @@
-import React from 'react'
+import UpdateCoursePage from '@/pages/update-course-page';
+import Heading  from '@/components/typography/Heading';
 
-const page = () => {
-  return (
-    <div>
-      page course
-    </div>
-  )
+export interface UpdateCoursePageRootProps {
+  searchParams: {
+    slug: string;
+  };
 }
 
-export default page
+function UpdateCoursePageRoot({ searchParams }: UpdateCoursePageRootProps) {
+  return (
+    <>
+      <Heading>Cập nhật khóa học</Heading>
+      <UpdateCoursePage slug={searchParams.slug} />
+    </>
+  );
+}
+
+export default UpdateCoursePageRoot;

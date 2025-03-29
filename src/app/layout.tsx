@@ -2,6 +2,7 @@
 
 import "@/app/styles/global.css";
 import { ThemeProvider } from "@/components/common/ThemeProvider";
+import { UserProvider } from "@/contexts";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ToastContainer } from 'react-toastify';
 
@@ -13,7 +14,7 @@ export default function RootLayout({
       <html lang="en" suppressHydrationWarning>
         <body>
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-            {children}
+            <UserProvider>{children}</UserProvider>
             <ToastContainer 
               autoClose={2000}
               hideProgressBar={true}

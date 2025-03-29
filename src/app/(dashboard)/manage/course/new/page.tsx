@@ -1,24 +1,15 @@
-import CourseAddNew from '@/components/course/CourseAddNew';
-import Heading from '@/components/typography/Heading';
-import { getUserInfo } from '@/lib/actions/user.actions';
-import { auth } from '@clerk/nextjs/server';
-import React from 'react';
+import CreateCoursePage from '@/pages/create-course-page';
+import Heading  from '@/components/typography/Heading';
 
-const page = async() => {
-  const { userId } = await auth();
-  if (!userId) return null;
-  const mongoUser = await getUserInfo({ userId });
-  if (!mongoUser) return null;
+export interface CreateCoursePageRootProps {}
 
-  // Convert mongoUser to a plain object
-  const plainUser = JSON.parse(JSON.stringify(mongoUser));
-
+function CreateCoursePageRoot(_props: CreateCoursePageRootProps) {
   return (
-    <div>
-      <Heading>Tạo khoá học mới</Heading>
-      <CourseAddNew user={plainUser}></CourseAddNew>
-    </div>
+    <>
+      <Heading>Tạo khóa học mới</Heading>
+      <CreateCoursePage />
+    </>
   );
-};
+}
 
-export default page;
+export default CreateCoursePageRoot;
