@@ -68,6 +68,11 @@ const CourseUpdate = ({ data }: { data: ICourse }) => {
       status: data.status,
       level: data.level,
       views: data.views,
+      info: {
+        requirements: data.info.requirements,
+        benefits: data.info.benefits,
+        qa: data.info.qa,
+      },
     },
   });
 

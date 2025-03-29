@@ -3,6 +3,7 @@ import Image from "next/image";
 import React from "react";
 
 import { getCourseBySlug } from "@/lib/actions/course.actions";
+import { Button } from "@/components/ui/button";
 
 function BoxInfo({
   title,
@@ -152,7 +153,7 @@ const page = async ({
               <span>Tài liệu kèm theo</span>
             </li>
           </ul>
-          <button className="bg-primary w-full mb-5">Mua khoá học</button>
+          <Button className="bg-primary w-full mb-5">Mua khoá học</Button>
         </div>
       </div>
     </div>
